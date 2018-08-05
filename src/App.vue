@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <div class="title animated fadeInDown" id="title">Yemek'e Dair</div>
+    <div class="title animated fadeInDown" id="title">
+      <router-link to="/" class="button">Yemek'e Dair</router-link>
+    </div>
     <nav>
       <div id="navigation">
         <a href="#">About</a>
@@ -8,7 +10,7 @@
         <a href="#">Contact</a>
       </div>
     </nav>
-    <RecipeList/>
+    <router-view/>
     <footer>Copyright © yemeksepeti.com 2018</footer>
   </div>
 </template>
@@ -49,11 +51,7 @@ ul {
 
 li {
   display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+  margin: 10px;
 }
 
 .title {
@@ -62,14 +60,21 @@ a {
 	text-align: center;
 }
 
-nav{
+nav {
 	text-align: center;
 	word-spacing: 30px;
 }
 
-nav a{
+#app a {
 	text-decoration: none;
-	color: #c01f54;
+}
+
+#title > a, a:active, a:visited {
+  color: #2c3e50;
+}
+
+#navigation a {
+  color: #c01f54;
 }
 
 @media (max-width: 480px) {
@@ -80,10 +85,10 @@ nav a{
 	ul.grid-nav li a {
 		display: block;
 	}
-	ul.blog-post {
+	ul.recipe {
 		margin-left: 0;
 	}
-	ul.blog-post li {
+	ul.recipe li {
 		width: 100% !important;
 		margin: 0 0 20px;
 	}

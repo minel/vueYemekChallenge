@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <ul class="blog-post columns-2" :key="recipe.Id" v-for="recipe in recipes.Data">
-      <li>
+    <ul class="recipe columns-2">
+      <li :key="recipe.Id" v-for="recipe in recipes.Data">
         <img v-bind:src="recipe.ImageUrl" />
         <h3>{{recipe.Title}}</h3>
-        <div class="button">Tarife Git...</div>
+        <router-link v-bind:to="recipe.Permalink" class="button">Tarife Git...</router-link>
       </li>
     </ul>
   </div>
@@ -28,7 +28,7 @@ export default {
       'fetchRecipes',
     ]),
   },
-  mounted() {
+  created() {
     this.fetchRecipes(1);
   }
 }
@@ -41,21 +41,18 @@ export default {
   text-align: center;
 }
 
-ul.blog-post {
+ul.recipe {
 	list-style: none;
 	font-size: 0px;
-	margin-left: -2.5%;
 }
 
-ul.blog-post li {
+ul.recipe li {
 	display: inline-block;
   border-radius: 3px;
 	padding: 1.5em;
   width: 400px;
-	margin: 0 0 2.5% 2.5%;
 	background: #fff;
 	border: 1px solid #eee;
-	font-size: 16px;
 	font-size: 1rem;
 	vertical-align: top;
 	box-shadow: 0 0 6px #eee;
@@ -64,13 +61,13 @@ ul.blog-post li {
 	-webkit-box-sizing: border-box;
 }
 
-ul.blog-post li img {
+ul.recipe li img {
 	max-width: 100%;
 	height: auto;
 	margin: 0 0 10px;
 }
 
-ul.blog-post li h3 {
+ul.recipe li h3 {
 	margin: 0.6em 0 0.6em;
   text-align: left!important;
   font-family: Source Sans Pro, sans-serif;
@@ -78,7 +75,7 @@ ul.blog-post li h3 {
   font-size: 1.1em;
 }
 
-ul.blog-post li p {
+ul.recipe li p {
   margin: 0.6em 0 1.3em;
 	font-size: .9em;
 	line-height: 1.5em;
@@ -86,6 +83,10 @@ ul.blog-post li p {
   text-align: left!important;
   font-family: Open Sans, sans-serif;
   font-weight: 300;
+}
+
+ul.recipe li a {
+  display: block;
 }
 
 .button {
