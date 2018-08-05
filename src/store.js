@@ -11,6 +11,21 @@ export default new Vuex.Store({
       success: false,
       error: false,
     },
+    pagination: {
+      pageNumber: 1,
+      limit: 10,
+    },
+  },
+  getters: {
+    recipes(state) {
+      return state.recipes;
+    },
+    pagination(state) {
+      return state.pagination;
+    },
+    page(state) {
+      return state.pagination.pageNumber;
+    },
   },
   mutations: {
     updateRecipes(state, recipes) {
