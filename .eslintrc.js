@@ -11,5 +11,7 @@ module.exports = {
     "no-param-reassign": "off",
     "quote-props": "off",
     "no-console": 0,
+    "no-shadow": "off",
+    "no-shadow-restricted-names": "off",
   },
 };
