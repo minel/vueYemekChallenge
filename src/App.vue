@@ -1,27 +1,19 @@
 <template>
   <div id="app">
-    <div class="title animated fadeInDown" id="title">
-      <router-link to="/" class="button">Yemek'e Dair</router-link>
-    </div>
-    <nav>
-      <div id="navigation">
-        <a href="#">Hakkımızda</a>
-        <a href="#">Tarifler</a>
-        <a href="#">İletişim</a>
-      </div>
-    </nav>
+    <Navbar />
     <router-view/>
     <footer>Copyright © yemeksepeti.com 2018</footer>
   </div>
 </template>
 
 <script>
-import RecipeList from './components/RecipeList.vue';
+
+import Navbar from './components/Navbar.vue';
 
 export default {
   name: 'app',
   components: {
-    RecipeList,
+    Navbar,
   },
   data () {
     return {
@@ -54,34 +46,12 @@ li {
   margin: 10px;
 }
 
-.title {
-	font-size: 55px;
-	font-style: bold;
-	text-align: center;
-  background-color: white;
-}
-
-nav {
-	text-align: center;
-	word-spacing: 30px;
-}
-
 #app a {
 	text-decoration: none;
 }
 
 a  a:active  a:visited {
   color: #2c3e50;
-}
-
-#title a {
-  color: #2c3e50;
-  background-color: white;
-}
-
-
-#navigation a {
-  color: #c01f54;
 }
 
 @media (max-width: 480px) {
@@ -100,5 +70,4 @@ a  a:active  a:visited {
 		margin: 0 0 20px;
 	}
 }
-
 </style>

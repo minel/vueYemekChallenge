@@ -13,8 +13,8 @@ export default new Vuex.Store({
       error: false,
     },
     pagination: {
-      pageNumber: 1,
-      limit: 10,
+      pageNumber: 0,
+      pageLimit: 3,
     },
   },
   getters: {
@@ -27,13 +27,16 @@ export default new Vuex.Store({
     pagination(state) {
       return state.pagination;
     },
-    page(state) {
+    activePage(state) {
       return state.pagination.pageNumber;
     },
   },
   mutations: {
     updateRecipes(state, recipes) {
       state.recipes = recipes;
+    },
+    setPage(state, pageNumber) {
+      state.pagination.pageNumber = pageNumber;
     },
     updateRecipe(state, recipe) {
       state.recipe = recipe;
@@ -82,6 +85,7 @@ export default new Vuex.Store({
       const url = `https://assignment.yemek.com/list-page-${pageNumber}.json`;
       dispatch('requestData', url)
         .then((data) => {
+          commit('setPage', pageNumber);
           commit('updateRecipes', data);
         })
         .catch(() => {

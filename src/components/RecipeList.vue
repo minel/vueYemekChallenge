@@ -1,5 +1,12 @@
 <template>
   <div class="container">
+    <div class="pagination">
+      <a @click="gotoPage((activePage % 1) - 1)" href="#">&laquo;</a>
+      <template v-for="page in pagination.pageLimit">
+        <a :key="page" @click="gotoPage(page)" :class="{active: page === activePage}" href="#">{{page}}</a>
+      </template>
+      <a @click="gotoPage((activePage % 3) + 1)" href="#">&raquo;</a>
+    </div>
     <ul class="recipe">
       <li :key="recipe.Id" v-for="recipe in recipes.Data">
         <img v-bind:src="recipe.ImageUrl" />
@@ -15,17 +22,22 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'RecipeList',
+  components: {
+  },
   computed: {
     ...mapGetters([
       'recipes',
       'pagination',
-      'page',
+      'activePage',
     ]),
   },
   methods: {
     ...mapActions([
       'fetchRecipes',
     ]),
+    gotoPage(page) {
+      this.fetchRecipes(page);
+    },
   },
   created() {
     this.fetchRecipes(1);
@@ -104,6 +116,28 @@ ul.recipe li a {
 .button:hover {
   opacity: 0.9;
   cursor: pointer;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+	border-radius: 5px;
 }
 
 </style>
