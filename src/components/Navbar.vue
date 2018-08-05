@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .title {
 	font-size: 55px;
 	font-style: bold;

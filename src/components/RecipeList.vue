@@ -46,7 +46,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="scss">
 .container {
   margin: 2em 0;
   text-align: center;

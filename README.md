@@ -1,6 +1,7 @@
 # vueYemekChallenge
 
-> A Vue.js project
+> A Vue.js project for simple Rest API calls and pagination with using vuex, vue-router.
+> The system using webpack and eslint for development
 
 ## Build Setup
 
