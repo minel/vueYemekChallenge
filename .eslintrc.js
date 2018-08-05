@@ -10,5 +10,6 @@ module.exports = {
         "no-undefined": "off",
         "no-param-reassign": "off",
         "quote-props": "off",
+        "no-console": 0,
     },
 };

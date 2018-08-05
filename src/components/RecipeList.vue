@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <ul class="recipe columns-2">
+    <ul class="recipe">
       <li :key="recipe.Id" v-for="recipe in recipes.Data">
         <img v-bind:src="recipe.ImageUrl" />
         <h3>{{recipe.Title}}</h3>
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -35,7 +34,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 .container {
   margin: 2em 0;
   text-align: center;

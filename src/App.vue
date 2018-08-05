@@ -5,9 +5,9 @@
     </div>
     <nav>
       <div id="navigation">
-        <a href="#">About</a>
-        <a href="#">Images</a>
-        <a href="#">Contact</a>
+        <a href="#">Hakkımızda</a>
+        <a href="#">Tarifler</a>
+        <a href="#">İletişim</a>
       </div>
     </nav>
     <router-view/>
@@ -58,6 +58,7 @@ li {
 	font-size: 55px;
 	font-style: bold;
 	text-align: center;
+  background-color: white;
 }
 
 nav {
@@ -69,9 +70,15 @@ nav {
 	text-decoration: none;
 }
 
-#title > a, a:active, a:visited {
+a  a:active  a:visited {
   color: #2c3e50;
 }
+
+#title a {
+  color: #2c3e50;
+  background-color: white;
+}
+
 
 #navigation a {
   color: #c01f54;

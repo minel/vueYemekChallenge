@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     recipes: [],
+    recipe: [],
     status: {
       waiting: false,
       success: false,
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     recipes(state) {
       return state.recipes;
     },
+    recipe(state) {
+      return state.recipe;
+    },
     pagination(state) {
       return state.pagination;
     },
@@ -30,6 +34,9 @@ export default new Vuex.Store({
   mutations: {
     updateRecipes(state, recipes) {
       state.recipes = recipes;
+    },
+    updateRecipe(state, recipe) {
+      state.recipe = recipe;
     },
     fetchWaiting(state) {
       state.status = {
@@ -54,19 +61,42 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchRecipes({ commit }, pageNumber) {
-      const Console = window.console;
-      commit('fetchWaiting');
-      fetch(`https://assignment.yemek.com/list-page-${pageNumber}.json`)
-        .then(res => res.json())
-        .then((res) => {
-          commit('updateRecipes', res);
-          commit('fetchSuccess');
-          Console.log('Data fetched successfully from page: ', pageNumber);
+    requestData({ commit }, url) {
+      return new Promise((resolve, reject) => {
+        commit('fetchWaiting');
+        fetch(url)
+          .then(res => res.json())
+          .then((res) => {
+            commit('fetchSuccess');
+            resolve(res);
+            console.log('Data fetched successfully from url: ', url);
+          })
+          .catch((err) => {
+            commit('fetchError');
+            reject();
+            console.log('An error occurred when trying to fetch: ', err);
+          });
+      });
+    },
+    fetchRecipes({ commit, dispatch }, pageNumber) {
+      const url = `https://assignment.yemek.com/list-page-${pageNumber}.json`;
+      dispatch('requestData', url)
+        .then((data) => {
+          commit('updateRecipes', data);
         })
-        .catch((err) => {
-          commit('fetchError');
-          Console.log('An error occurred when trying to fetching recipes: ', err);
+        .catch(() => {
+          // catch fetchRecipes error
+        });
+    },
+    fetchRecipe({ commit, dispatch }, id) {
+      const url = 'https://assignment.yemek.com/detail.json';
+      console.log(`Fetching a recipe with id:${id}`);
+      dispatch('requestData', url)
+        .then((data) => {
+          commit('updateRecipe', data);
+        })
+        .catch(() => {
+          // catch fetchRecipe error
         });
     },
   },
