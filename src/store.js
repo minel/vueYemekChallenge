@@ -33,7 +33,11 @@ export default new Vuex.Store({
   },
   mutations: {
     updateRecipes(state, recipes) {
+      state.recipes = state.recipes.concat(recipes);
+      /*
+      if we want to 10 data per page, write this code in above:
       state.recipes = recipes;
+      */
     },
     setPage(state, pageNumber) {
       state.pagination.pageNumber = pageNumber;
@@ -71,7 +75,7 @@ export default new Vuex.Store({
           .then(res => res.json())
           .then((res) => {
             commit('fetchSuccess');
-            resolve(res);
+            resolve(res.Data);
             console.log('Data fetched successfully from url: ', url);
           })
           .catch((err) => {

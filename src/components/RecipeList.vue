@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div class="pagination">
-      <a @click="gotoPage((activePage % 1) - 1)" href="#">&laquo;</a>
+      <a v-bind:class="[activePage == 1 ? 'hidden' : '']" @click="gotoPage(activePage - 1)" href="#">&laquo;</a>
       <template v-for="page in pagination.pageLimit">
         <a :key="page" @click="gotoPage(page)" :class="{active: page === activePage}" href="#">{{page}}</a>
       </template>
-      <a @click="gotoPage((activePage % 3) + 1)" href="#">&raquo;</a>
+      <a v-bind:class="[activePage == 3 ? 'hidden' : '']" @click="gotoPage(activePage + 1)" href="#">&raquo;</a>
     </div>
     <ul class="recipe">
-      <li :key="recipe.Id" v-for="recipe in recipes.Data">
+      <li :key="recipe.Id" v-for="recipe in recipes">
         <img v-bind:src="recipe.ImageUrl" />
         <h3>{{recipe.Title}}</h3>
         <router-link v-bind:to="recipe.Permalink" class="button">Tarife Git...</router-link>
@@ -138,6 +138,10 @@ ul.recipe li a {
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 	border-radius: 5px;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 </style>

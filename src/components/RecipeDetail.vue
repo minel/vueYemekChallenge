@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <ul class="recipe detail">
-      <li v-if="recipe.Data">
-        <img v-bind:src="recipe.Data.ImageUrl" />
-        <h3>{{recipe.Data.Title}}</h3>
-        <span v-html="recipe.Data.Content"></span>
+      <li v-if="recipe">
+        <img v-bind:src="recipe.ImageUrl" />
+        <h3>{{recipe.Title}}</h3>
+        <span v-html="recipe.Content"></span>
       </li>
     </ul>
   </div>
