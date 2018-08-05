@@ -1,4 +1,4 @@
-# vuewebpackyemek
+# vueYemekChallenge
 
 > A Vue.js project
 
