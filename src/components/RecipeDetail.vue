@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <ul class="recipe detail">
+    <Loader v-if="!fetchStatus.success" />
+    <Loader v-if="!fetchStatus.success" />
+    <ul v-if="fetchStatus.success" class="recipe detail">
       <li v-if="recipe">
         <img v-bind:src="recipe.ImageUrl" />
          <p>{{formattedDate}}</p>
@@ -13,13 +15,18 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import Loader from '../components/Loader.vue';
 
 export default {
   name: 'RecipeDetail',
+  components: {
+    Loader,
+  },
   computed: {
     ...mapGetters([
       'recipe',
       'formattedDate',
+      'fetchStatus',
     ]),
   },
   methods: {

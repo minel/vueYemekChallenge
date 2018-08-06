@@ -5,11 +5,6 @@
       <h3>Loading</h3>
       <a href="#" class="loaderButton">Tarife Git...</a>
     </li>
-    <li>
-      <img src=""/>
-      <h3>Loading</h3>
-      <a href="#" class="loaderButton">Tarife Git...</a>
-    </li>
   </ul>
 </template>
 
