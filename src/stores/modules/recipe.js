@@ -11,6 +11,20 @@ const getters = {
   recipe(state) {
     return state.recipe;
   },
+  formattedDate(state) {
+    if (!state.recipe.Id) {
+      return '';
+    }
+    const dateTime = {};
+    const rawDateTime = state.recipe.CreatedAt.split('T');
+    const rawdate = rawDateTime[0].split('-');
+    const rawtime = rawDateTime[1].split(':');
+    for (let i = 0; i < rawdate.length; i += 1) {
+      dateTime[i] = rawdate[i];
+      dateTime[i + 3] = rawtime[i];
+    }
+    return `${dateTime[1]}/${dateTime[2]}/${dateTime[0]} - ${dateTime[3]}:${dateTime[4]}`;
+  },
 };
 
 const mutations = {
