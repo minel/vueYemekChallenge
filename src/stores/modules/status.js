@@ -11,7 +11,11 @@ const state = {
   },
 };
 
-const getters = {};
+const getters = {
+  fetchStatus(state) {
+    return state.status;
+  },
+};
 
 const mutations = {
   fetchWaiting(state) {

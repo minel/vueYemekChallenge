@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <Paginator />
-    <ul class="recipe">
+    <Loader v-if="!fetchStatus.success" />
+    <ul v-if="fetchStatus.success" class="recipe">
       <li :key="recipe.Id" v-for="recipe in recipes">
         <img v-bind:src="recipe.ImageUrl" />
         <h3>{{recipe.Title}}</h3>
@@ -14,15 +15,18 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import Paginator from '../components/Paginator.vue';
+import Loader from '../components/Loader.vue';
 
 export default {
   name: 'RecipeList',
   components: {
     Paginator,
+    Loader,
   },
   computed: {
     ...mapGetters([
       'recipes',
+      'fetchStatus',
     ]),
   },
   methods: {
