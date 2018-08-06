@@ -15,7 +15,6 @@ const getters = {
 
 const mutations = {
   updateRecipes(state, recipes) {
-    // state.recipes = state.recipes.concat(recipes);
     state.recipes = recipes;
   },
 };

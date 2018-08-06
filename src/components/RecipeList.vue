@@ -1,12 +1,6 @@
 <template>
   <div class="container">
-    <div class="pagination">
-      <a v-bind:class="[activePage === 1 ? 'hidden' : '']" @click="gotoPage(activePage - 1)" href="#">&laquo;</a>
-      <template v-for="page in pagination.pageLimit">
-        <a :key="page" @click="gotoPage(page)" :class="[page === activePage ? 'active' : '']" href="#">{{page}}</a>
-      </template>
-      <a v-bind:class="[activePage == 3 ? 'hidden' : '']" @click="gotoPage(activePage + 1)" href="#">&raquo;</a>
-    </div>
+    <Paginator />
     <ul class="recipe">
       <li :key="recipe.Id" v-for="recipe in recipes">
         <img v-bind:src="recipe.ImageUrl" />
@@ -19,29 +13,20 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import Paginator from '../components/Paginator.vue';
 
 export default {
   name: 'RecipeList',
   components: {
+    Paginator,
   },
   computed: {
     ...mapGetters([
       'recipes',
-      'pagination',
-      'activePage',
     ]),
   },
   methods: {
-    ...mapActions([
-      'fetchRecipes',
-    ]),
-    gotoPage(page) {
-      this.fetchRecipes(page);
-    },
   },
-  created() {
-    this.fetchRecipes(1);
-  }
 }
 </script>
 
