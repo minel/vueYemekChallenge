@@ -32,7 +32,7 @@ const actions = {
         })
         .catch((err) => {
           commit('fetchError');
-          reject();
+          reject(err);
           console.log('An error occurred when trying to fetch: ', err);
         });
     });
@@ -44,8 +44,8 @@ const actions = {
       .then((data) => {
         commit('updateRecipe', data);
       })
-      .catch(() => {
-        // catch fetchRecipe error
+      .catch((err) => {
+        console.log('Fetch a recipe error', err);
       });
   },
 };

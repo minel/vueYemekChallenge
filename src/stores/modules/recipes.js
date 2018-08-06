@@ -15,25 +15,31 @@ const getters = {
 
 const mutations = {
   updateRecipes(state, recipes) {
-    state.recipes = state.recipes.concat(recipes);
-    /*
-    if we want to 10 data per page, write this code in above:
+    // state.recipes = state.recipes.concat(recipes);
     state.recipes = recipes;
-    */
   },
 };
 
 const actions = {
   fetchRecipes({ commit, dispatch }, pageNumber) {
-    const url = `https://assignment.yemek.com/list-page-${pageNumber}.json`;
-    dispatch('requestData', url)
-      .then((data) => {
-        commit('setPage', pageNumber);
-        commit('updateRecipes', data);
-      })
-      .catch(() => {
-        // catch fetchRecipes error
-      });
+    const urls = [];
+    let index = 1;
+    let recipes = [];
+    for (index; index <= pageNumber; index += 1) {
+      urls.push(`https://assignment.yemek.com/list-page-${index}.json`);
+    }
+    index = 0;
+    for (index; index < urls.length; index += 1) {
+      dispatch('requestData', urls[index])
+        .then((data) => {
+          recipes = recipes.concat(data);
+          commit('updateRecipes', recipes);
+        })
+        .catch((err) => {
+          console.log('Fetching recipes error', err);
+        });
+      commit('setPage', pageNumber);
+    }
   },
 };
 

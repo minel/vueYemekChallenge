@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="pagination">
-      <a v-bind:class="[activePage == 1 ? 'hidden' : '']" @click="gotoPage(activePage - 1)" href="#">&laquo;</a>
+      <a v-bind:class="[activePage === 1 ? 'hidden' : '']" @click="gotoPage(activePage - 1)" href="#">&laquo;</a>
       <template v-for="page in pagination.pageLimit">
-        <a :key="page" @click="gotoPage(page)" :class="{active: page === activePage}" href="#">{{page}}</a>
+        <a :key="page" @click="gotoPage(page)" :class="[page === activePage ? 'active' : '']" href="#">{{page}}</a>
       </template>
       <a v-bind:class="[activePage == 3 ? 'hidden' : '']" @click="gotoPage(activePage + 1)" href="#">&raquo;</a>
     </div>
@@ -133,6 +133,8 @@ ul.recipe li a {
 	background-color: #4CAF50;
 	color: white;
 	border-radius: 5px;
+  pointer-events: none;
+  cursor: default;
 }
 
 .pagination a:hover:not(.active) {
