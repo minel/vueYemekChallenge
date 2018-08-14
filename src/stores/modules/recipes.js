@@ -21,15 +21,12 @@ const mutations = {
 
 const actions = {
   fetchRecipes({ commit, dispatch }, pageNumber) {
-    const urls = [];
-    let index = 1;
+    let url;
+    let index = 0;
     let recipes = [];
-    for (index; index <= pageNumber; index += 1) {
-      urls.push(`https://assignment.yemek.com/list-page-${index}.json`);
-    }
-    index = 0;
-    for (index; index < urls.length; index += 1) {
-      dispatch('requestData', urls[index])
+    for (index; index < pageNumber; index += 1) {
+      url = `https://assignment.yemek.com/list-page-${index + 1}.json`;
+      dispatch('requestData', url)
         .then((data) => {
           recipes = recipes.concat(data);
           commit('updateRecipes', recipes);
