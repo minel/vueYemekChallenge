@@ -34,8 +34,8 @@ const actions = {
         .catch((err) => {
           console.log('Fetching recipes error', err);
         });
-      commit('setPage', pageNumber);
     }
+    commit('setPage', pageNumber);
   },
 };
 
